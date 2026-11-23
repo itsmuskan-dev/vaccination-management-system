@@ -1,0 +1,687 @@
+/* =====================================================
+   VaxCare - Design System (Day 2)
+   Sab colors/fonts yahan :root mein hain. Rang badalna ho to sirf yahan badlo.
+   ===================================================== */
+:root {
+  --brand:        #27256e;   /* main teal */
+  --brand-dark:   #1c1b57;
+  --brand-light:  #e8e7ff;
+  --accent:       #2563eb;   /* blue */
+  --bg:           #f6f5ff;   /* page ka background */
+  --text:         #1f2937;
+  --muted:        #6b7280;
+  --radius:       14px;
+  --shadow:       0 6px 24px rgba(39,37,110, 0.10);
+
+  /* Bootstrap ke apne colors ko hamare colors se badal do */
+  --bs-primary:        #27256e;
+  --bs-primary-rgb:    39, 37, 110;
+  --bs-link-color:     #27256e;
+  --bs-link-hover-color: #1c1b57;
+  --bs-body-font-family: 'Poppins', system-ui, sans-serif;
+  --bs-body-color:     var(--text);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Poppins', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.site-main { flex: 1; }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 { font-weight: 600; color: #0f172a; }
+.text-muted { color: var(--muted) !important; }
+/* ---------- Buttons ---------- */
+.btn { border-radius: 10px; font-weight: 500; transition: all .2s ease; }
+.btn-primary {
+  --bs-btn-bg: var(--brand); --bs-btn-border-color: var(--brand);
+  --bs-btn-hover-bg: var(--brand-dark); --bs-btn-hover-border-color: var(--brand-dark);
+  --bs-btn-active-bg: var(--brand-dark); --bs-btn-active-border-color: var(--brand-dark);
+  --bs-btn-disabled-bg: var(--brand); --bs-btn-disabled-border-color: var(--brand);
+}
+.btn-outline-primary {
+  --bs-btn-color: var(--brand); --bs-btn-border-color: var(--brand);
+  --bs-btn-hover-bg: var(--brand); --bs-btn-hover-border-color: var(--brand);
+  --bs-btn-active-bg: var(--brand); --bs-btn-active-border-color: var(--brand);
+}
+.btn:hover { transform: translateY(-1px); }
+/* ---------- Navbar ---------- */
+.site-navbar { box-shadow: 0 2px 12px rgba(0,0,0,.05); padding: .7rem 0; transition: box-shadow .2s; }
+.site-navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,.10); }
+.brand-text { font-weight: 700; font-size: 1.25rem; color: var(--brand); }
+.site-navbar .nav-link { font-weight: 500; color: #374151; padding: .5rem .9rem; border-radius: 8px; }
+.site-navbar .nav-link:hover,
+.site-navbar .nav-link.active { color: var(--brand); background: var(--brand-light); }
+/* ---------- Cards ---------- */
+.card { border: 0; border-radius: var(--radius); box-shadow: var(--shadow); }
+.card-hover { transition: transform .18s ease, box-shadow .18s ease; }
+.card-hover:hover { transform: translateY(-6px); box-shadow: 0 14px 34px rgba(39,37,110,.18); }
+.icon-box {
+  width: 56px; height: 56px; border-radius: 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--brand-light); color: var(--brand); font-size: 1.6rem;
+}
+/* ---------- Forms ---------- */
+.form-control,
+.form-select {
+  border-radius: 10px; padding: .65rem .9rem; border: 1px solid #d1d5db;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--brand); box-shadow: 0 0 0 .2rem rgba(39,37,110,.15);
+}
+.form-label { font-weight: 500; font-size: .9rem; }
+/* ---------- Tables ---------- */
+.table thead th {
+  background: #f1f5f9; font-size: .8rem; text-transform: uppercase;
+  letter-spacing: .04em; color: #475569; border-bottom: 0; white-space: nowrap;
+}
+.table > :not(caption) > * > * { padding: .85rem 1rem; vertical-align: middle; }
+/* ---------- Footer ---------- */
+.site-footer { background: #15143f; color: #9ca3af; }
+.site-footer a { color: #9ca3af; text-decoration: none; }
+.site-footer a:hover { color: #b4b2ff; }
+/* ---------- Back to top ---------- */
+#backToTop {
+  position: fixed; right: 20px; bottom: 20px; width: 44px; height: 44px;
+  display: none; z-index: 1000; padding: 0;
+}
+/* ---------- Animation (page load par halka sa fade-in) ---------- */
+.fade-in-up { animation: fadeInUp .3s ease-out both; }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 576px) {
+  .table > :not(caption) > * > * { padding: .65rem .6rem; }
+}
+/* ---------- Day 3: Login / Register pages ---------- */
+.auth-wrapper {
+  padding: 3rem 0;
+  background: radial-gradient(circle at 10% 10%, var(--brand-light), transparent 40%),
+              radial-gradient(circle at 90% 90%, #dbeafe, transparent 40%);
+}
+.auth-card { border-radius: 20px; }
+.btn-check:checked + .btn-outline-primary { background: var(--brand); color: #fff; }
+.was-validated .form-control:valid { border-color: #d1d5db; background-image: none; }
+@media (max-width: 576px) {
+  .auth-wrapper { padding: 1.5rem 0; }
+}
+/* =====================================================
+   Day 4: Admin panel layout
+   ===================================================== */
+body.admin-body { display: block; background: var(--bg); }
+.admin-sidebar {
+  position: fixed; top: 0; left: 0; bottom: 0; width: 260px;
+  background: #15143f; color: #c9c9f0; padding: 1.2rem 1rem;
+  overflow-y: auto; z-index: 1040; transition: transform .25s ease;
+}
+.side-brand {
+  display: flex; align-items: center; gap: .6rem; padding: .3rem .6rem 1.2rem;
+  color: #fff; font-weight: 700; font-size: 1.25rem; text-decoration: none;
+}
+.side-label { font-size: .7rem; letter-spacing: .12em; color: #8b8bd0; padding: 0 .8rem; margin-bottom: .4rem; }
+.side-nav { display: flex; flex-direction: column; gap: .2rem; }
+.side-link {
+  display: flex; align-items: center; gap: .75rem; padding: .7rem .8rem;
+  border-radius: 10px; color: #c9c9f0; text-decoration: none; font-size: .93rem; transition: all .2s;
+}
+.side-link i { font-size: 1.1rem; }
+.side-link:hover { background: rgba(255,255,255,.08); color: #fff; }
+.side-link.active { background: var(--brand); color: #fff; box-shadow: 0 4px 14px rgba(39,37,110,.45); }
+.side-link.disabled { opacity: .5; cursor: not-allowed; }
+.side-link.disabled:hover { background: transparent; color: #c9c9f0; }
+.admin-content { margin-left: 260px; min-height: 100vh; display: flex; flex-direction: column; }
+.admin-topbar {
+  background: #fff; padding: .8rem 1.5rem; display: flex; justify-content: space-between;
+  align-items: center; position: sticky; top: 0; z-index: 1030; box-shadow: 0 2px 10px rgba(0,0,0,.05);
+}
+.admin-main { flex: 1; padding: 1.5rem; }
+.admin-footer { text-align: center; padding: 1rem; font-size: .85rem; color: var(--muted); }
+.avatar {
+  width: 32px; height: 32px; border-radius: 50%; background: var(--brand); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: .9rem;
+}
+/* Stat cards (dashboard) */
+.stat-card { padding: 1.3rem; display: flex; align-items: center; gap: 1rem; }
+.stat-card .stat-number { font-size: 1.8rem; font-weight: 700; line-height: 1; color: #0f172a; }
+.stat-card .stat-label { color: var(--muted); font-size: .85rem; margin-top: .25rem; }
+/* Mobile: sidebar chhup jata hai, button se khulta hai */
+.admin-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 1035; }
+@media (max-width: 991.98px) {
+  .admin-sidebar { transform: translateX(-100%); }
+  .admin-sidebar.open { transform: translateX(0); }
+  .admin-overlay.show { display: block; }
+  .admin-content { margin-left: 0; }
+  .admin-main { padding: 1rem; }
+  .admin-topbar { padding: .7rem 1rem; }
+}
+/* Bootstrap ka "subtle" primary background bhi hamare teal se match kare */
+:root { --bs-primary-bg-subtle: #e8e7ff; --bs-primary-text-emphasis: #27256e; }
+/* .card ki direction column hoti hai, isliye stat card mein icon upar aa raha tha */
+.stat-card { flex-direction: row; }
+.admin-content { min-width: 0; overflow-x: clip; }
+/* koi cheez bahar nikle to side scroll na bane */
+.admin-main { min-width: 0; }
+.admin-topbar h5 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55vw; }
+@media (max-width: 575.98px) {
+  .stat-card { padding: .9rem; gap: .7rem; }
+  .stat-card .icon-box { width: 44px; height: 44px; font-size: 1.25rem; border-radius: 12px; flex-shrink: 0; }
+  .stat-card .stat-number { font-size: 1.4rem; }
+  .stat-card .stat-label { font-size: .75rem; }
+  .admin-main h4 { font-size: 1.15rem; }
+}
+/* =====================================================
+   Day 6: Responsive tables (mobile par har row ek card)
+   Istemal: <table class="table table-stack"> aur har <td data-label="Naam">
+   ===================================================== */
+@media (max-width: 767.98px) {
+  .table-stack,
+  .table-stack tbody,
+  .table-stack tr,
+  .table-stack td { display: block; width: 100%; }
+  .table-stack thead { display: none; }
+  .table-stack tr {
+      border: 1px solid #e5e7eb; border-radius: 12px; background: #fff;
+      padding: .35rem 1rem; margin-bottom: .8rem;
+    }
+  .table-stack td {
+      position: relative; text-align: right; min-height: 2.3rem;
+      padding: .55rem 0 .55rem 42% !important;
+      border: 0; border-bottom: 1px dashed #e5e7eb; word-break: break-word;
+      white-space: normal !important;
+    }
+  .table-stack td:last-child { border-bottom: 0; }
+  .table-stack td::before {
+      content: attr(data-label); position: absolute; left: 0; top: .6rem; width: 38%;
+      text-align: left; font-weight: 600; font-size: .72rem; letter-spacing: .04em;
+      text-transform: uppercase; color: #64748b;
+    }
+  /* jo cell mobile par pehle chhupi thi, ab card mein poori dikhao */
+  .table-stack td.d-none { display: block !important; }
+  /* Actions wali cell (label nahi) aur "no data" wali row */
+  .table-stack td:not([data-label]) { padding-left: 0 !important; text-align: right; }
+  .table-stack td:not([data-label])::before { display: none; }
+  .table-stack td[colspan] { text-align: center; padding-left: 0 !important; }
+  .table-stack .btn { margin-top: .15rem; }
+}
+/* =====================================================
+   Day 7: Print (reports)
+   ===================================================== */
+.print-only { display: none; }
+@media print {
+  .admin-sidebar,
+  .admin-topbar,
+  .admin-footer,
+  .admin-overlay,
+  .no-print,
+  .alert,
+  .site-navbar,
+  #backToTop { display: none !important; }
+  .print-only { display: block !important; }
+  .admin-content { margin-left: 0 !important; }
+  .admin-main { padding: 0 !important; }
+  body,
+  .admin-body { background: #fff !important; }
+  .card { box-shadow: none !important; border: 1px solid #ddd !important; }
+  .table-stack td { white-space: normal !important; }
+  a { text-decoration: none; color: inherit; }
+}
+/* Flex ke andar lamba text kate (truncate) to ye zaroori hai */
+.min-w-0 { min-width: 0; }
+/* =====================================================
+   Day 10: Hospital chunne wale cards
+   ===================================================== */
+.hospital-option { cursor: pointer; border: 2px solid transparent; transition: all .2s; height: 100%; }
+.hospital-option:hover { border-color: var(--brand-light); }
+.btn-check:checked + .hospital-option { border-color: var(--brand); background: #f1f0ff; }
+.was-validated .btn-check:invalid + .hospital-option { border-color: #dc3545; }
+/* =====================================================
+   Day 13: Landing page, animations, charts
+   ===================================================== */
+html { scroll-padding-top: 80px; }
+/* ---------- Scroll reveal (JS data-reveal wale elements ko khud lagata hai) ---------- */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .3s ease-out, transform .3s ease-out; }
+.reveal.revealed { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+/* ---------- Hero ---------- */
+.hero {
+  position: relative; overflow: hidden; padding: 4.5rem 0 3.5rem;
+  background: radial-gradient(circle at 85% 10%, #e8e7ff 0, transparent 45%),
+              radial-gradient(circle at 5% 90%, #dbeafe 0, transparent 40%), var(--bg);
+}
+.hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.15; font-weight: 700; }
+.hero .lead { font-size: 1.1rem; max-width: 520px; }
+.hero-row { display: flex; justify-content: space-between; align-items: center; padding: .6rem 0; border-bottom: 1px dashed #e5e7eb; font-size: .9rem; }
+.hero-row:last-child { border-bottom: 0; }
+@media (max-width: 575.98px) {
+  .hero { padding: 3rem 0 2.5rem; }
+}
+/* ---------- Sections ---------- */
+.section { padding: 4.5rem 0 1rem; }
+/* How it works */
+.step { text-align: center; padding: 0 .5rem; }
+.step h5 { font-size: 1rem; }
+.step p { color: var(--muted); font-size: .9rem; margin: 0; }
+/* FAQ */
+.accordion-item { border: 0; border-radius: var(--radius) !important; box-shadow: var(--shadow); margin-bottom: .8rem; overflow: hidden; }
+.accordion-button { font-weight: 500; }
+.accordion-button:not(.collapsed) { background: var(--brand-light); color: var(--brand-dark); box-shadow: none; }
+.accordion-button:focus { box-shadow: 0 0 0 .2rem rgba(39,37,110,.15); border-color: var(--brand); }
+/* ---------- Admin charts ---------- */
+.chart-box { position: relative; height: 260px; }
+.chart-empty { height: 260px; display: flex; align-items: center; justify-content: center; color: var(--muted); }
+/* =====================================================
+   Day 17: Landing page redesign + split login/register
+   ===================================================== */
+.text-gradient {
+  background: linear-gradient(90deg, #27256e, #4b47d1 55%, #2563eb);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+/* Rang-birange icons */
+.icon-box.c-blue { background: #dbeafe; color: #2563eb; }
+.icon-box.c-amber { background: #fef3c7; color: #d97706; }
+.icon-box.c-violet { background: #ede9fe; color: #7c3aed; }
+.icon-box.c-green { background: #e8e7ff; color: #4b47d1; }
+.icon-box.c-rose { background: #ffe4e6; color: #e11d48; }
+/* ---------- Spotlight rows (text + sample preview) ---------- */
+.spot-eyebrow { color: var(--brand); font-weight: 600; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; }
+.spot h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin: .5rem 0 .8rem; }
+.check-list { list-style: none; padding: 0; margin: 1.2rem 0 1.6rem; }
+.check-list li { display: flex; gap: .7rem; align-items: flex-start; padding: .35rem 0; color: #374151; }
+.check-list i { color: var(--brand); font-size: 1.15rem; line-height: 1.4; }
+.sample-note { text-align: center; color: var(--muted); font-size: .78rem; margin-top: .8rem; }
+.mock-window { background: #fff; border-radius: 16px; box-shadow: 0 24px 60px rgba(15,23,42,.14); overflow: hidden; border: 1px solid #e5e7eb; }
+.mock-bar { background: #f1f5f9; padding: .65rem .9rem; display: flex; gap: .4rem; }
+.mock-bar span { width: 10px; height: 10px; border-radius: 50%; background: #fca5a5; }
+.mock-bar span:nth-child(2) { background: #fcd34d; }
+.mock-bar span:nth-child(3) { background: #86efac; }
+.mock-body { padding: 1.3rem; }
+.mock-alert {
+  display: flex; gap: .8rem; align-items: flex-start; background: #fffbeb; border: 1px solid #fde68a;
+  border-radius: 12px; padding: .9rem 1rem; font-size: .88rem; margin-bottom: 1rem;
+}
+.mock-alert i { color: #d97706; font-size: 1.2rem; }
+.mock-cert { border: 4px double var(--brand); border-radius: 10px; background: #fff; padding: 1.5rem 1.3rem; text-align: center; box-shadow: 0 24px 60px rgba(15,23,42,.14); }
+.mock-cert .t { font-size: 1.15rem; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); font-weight: 700; margin: .4rem 0 0; }
+.mock-cert .nm { font-size: 1.3rem; font-weight: 700; border-bottom: 2px solid var(--brand); display: inline-block; padding: 0 1rem; margin: .5rem 0 .8rem; }
+.mock-cert table { font-size: .8rem; text-align: left; }
+.mock-cert .stamp {
+  display: inline-flex; align-items: center; gap: .4rem; border: 2px solid #4b47d1; color: #4b47d1;
+  border-radius: 8px; padding: .25rem .7rem; font-weight: 600; font-size: .8rem; transform: rotate(-4deg);
+}
+/* ---------- Login / Register: split layout ---------- */
+.auth-split { border-radius: 22px; overflow: hidden; }
+.auth-side {
+  background: linear-gradient(160deg, #27256e 0%, #4b47d1 100%); color: #fff; padding: 2.6rem;
+  flex-direction: column; justify-content: center; position: relative; overflow: hidden;
+}
+.auth-side::before,
+.auth-side::after { content: ''; position: absolute; border-radius: 50%; background: rgba(255,255,255,.10); }
+.auth-side::before { width: 240px; height: 240px; top: -90px; right: -90px; }
+.auth-side::after { width: 200px; height: 200px; bottom: -80px; left: -60px; }
+.auth-side > * { position: relative; z-index: 1; }
+.auth-side h2 { color: #fff; font-size: 1.7rem; line-height: 1.25; margin: 1rem 0 .6rem; }
+.auth-side p { opacity: .92; }
+.auth-side ul { list-style: none; padding: 0; margin: 1.4rem 0 0; }
+.auth-side li { display: flex; gap: .7rem; align-items: flex-start; margin: .65rem 0; font-size: .95rem; }
+.auth-side li i { color: #c9c7ff; font-size: 1.1rem; }
+/* =====================================================
+   Day 18: Toast notifications + confirm modal
+   ===================================================== */
+.toast-pos { top: 76px; z-index: 1100; }
+.toast-vax {
+  width: 360px; max-width: calc(100vw - 2rem); border: 0; border-radius: 14px;
+  background: #fff; box-shadow: 0 14px 40px rgba(15,23,42,.20); overflow: hidden;
+  border-left: 5px solid var(--tc, #27256e);
+}
+.toast-vax .toast-ico { font-size: 1.5rem; color: var(--tc, #27256e); line-height: 1.2; }
+.toast-vax .bar { height: 3px; background: var(--tc, #27256e); width: 100%; animation: toastbar var(--dur, 3s) linear forwards; }
+.toast-vax.show { animation: toastin .2s ease-out; }
+@keyframes toastin { from { transform: translateX(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+.toast-vax:hover .bar { animation-play-state: paused; }
+@keyframes toastbar { from { width: 100%; } to { width: 0; } }
+.toast-success { --tc: #4b47d1; }
+.toast-danger { --tc: #dc2626; }
+.toast-warning { --tc: #d97706; }
+.toast-info { --tc: #2563eb; }
+@media (max-width: 575.98px) {
+  .toast-pos { left: 0; }
+  .toast-vax { width: 100%; max-width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .toast-vax .bar { animation: none; }
+}
+.confirm-ico {
+  width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 1rem;
+  background: #fee2e2; color: #dc2626; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
+}
+#confirmModal .modal-content { border: 0; border-radius: 18px; box-shadow: 0 24px 60px rgba(15,23,42,.25); }
+/* Day 19: khali cell (jaise koi action na ho) mobile card mein jagah na ghere */
+@media (max-width: 767.98px) {
+  .table-stack td:empty { display: none; }
+}
+/* =====================================================
+   Day 20: Contact section
+   ===================================================== */
+.contact-wrap { border-radius: 22px; overflow: hidden; box-shadow: 0 20px 55px rgba(15,23,42,.12); }
+.contact-panel {
+  background: linear-gradient(160deg, #27256e 0%, #4b47d1 100%); color: #fff; padding: 2.6rem;
+  position: relative; overflow: hidden;
+}
+.contact-panel::before,
+.contact-panel::after { content: ''; position: absolute; border-radius: 50%; background: rgba(255,255,255,.10); }
+.contact-panel::before { width: 240px; height: 240px; top: -90px; right: -90px; }
+.contact-panel::after { width: 200px; height: 200px; bottom: -80px; left: -60px; }
+.contact-panel > * { position: relative; z-index: 1; }
+.contact-panel h3 { color: #fff; font-size: 1.5rem; }
+.contact-panel p { opacity: .92; }
+.contact-item { display: flex; gap: 1rem; align-items: flex-start; margin-top: 1.4rem; }
+.contact-item .ci {
+  width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0; background: rgba(255,255,255,.18);
+  display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+}
+.contact-item small { display: block; opacity: .8; }
+.contact-item a { color: #fff; text-decoration: none; font-weight: 500; }
+@media (max-width: 575.98px) {
+  .contact-panel { padding: 1.8rem; }
+}
+/* =====================================================
+   Day 21: NAYI THEME (navy + coral). Reference se inspiration, apna design.
+   Saare panels (landing, login, admin, parent, hospital) yahin se rang lete hain.
+   ===================================================== */
+:root {
+  --brand: #27256e;            /* gehra navy: buttons, links */
+  --brand-dark: #1c1b57;
+  --brand-light: #e8e7ff;      /* halka lavender: icon boxes */
+  --indigo: #4b47d1;           /* beech ka indigo: gradients */
+  --coral: #ff6b5e;            /* highlight rang */
+  --coral-dark: #e9554a;
+  --teal: #2a9df4;             /* chhota sa variety wala rang */
+  --bg: #f6f5ff;
+  --text: #14133d;
+  --muted: #66668a;
+  --navy-deep: #15143f;
+  --shadow: 0 8px 28px rgba(39,37,110,.10);
+  --bs-primary: #27256e;
+  --bs-primary-rgb: 39, 37, 110;
+  --bs-link-color: #27256e;
+  --bs-link-hover-color: #1c1b57;
+  --bs-primary-bg-subtle: #e8e7ff;
+  --bs-primary-text-emphasis: #27256e;
+  --bs-body-color: #14133d;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 { color: var(--text); }
+.spot-eyebrow { color: var(--coral); }
+.side-link.active { background: var(--coral); box-shadow: 0 6px 18px rgba(255,107,94,.38); }
+.admin-sidebar { background: var(--navy-deep); }
+.btn-check:checked + .btn-outline-primary { background: var(--brand); color: #fff; }
+/* =====================================================
+   Day 21: Landing page v3 (navy + coral). Sab classes "lp-" se.
+   ===================================================== */
+.btn-pill { border-radius: 999px; }
+.btn-coral { --bs-btn-bg: var(--coral); --bs-btn-border-color: var(--coral); --bs-btn-color: #fff;
+  --bs-btn-hover-bg: var(--coral-dark); --bs-btn-hover-border-color: var(--coral-dark); --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: var(--coral-dark); --bs-btn-active-border-color: var(--coral-dark); --bs-btn-active-color: #fff; }
+/* ---------- Top bar + navbar ---------- */
+.lp-topbar { background: var(--navy-deep); color: #cfcff5; font-size: .8rem; padding: .5rem 0; }
+.lp-topbar a { color: #cfcff5; text-decoration: none; }
+.lp-topbar a:hover { color: #fff; }
+.lp-topbar i { color: var(--coral); margin-right: .4rem; }
+.lp-topbar .sep { opacity: .3; margin: 0 .9rem; }
+.btn-signup { background: var(--brand); color: #fff; border-radius: 999px; padding: .5rem 1.3rem; font-weight: 500; border: 0; }
+.btn-signup:hover { background: var(--coral); color: #fff; }
+/* ---------- Hero ---------- */
+.lp-hero { position: relative; overflow: hidden; padding: 4.5rem 0 5.5rem; background: linear-gradient(180deg, #fff 0%, var(--bg) 100%); }
+.lp-hero::before { content: ''; position: absolute; width: 520px; height: 520px; border-radius: 50%; right: -160px; top: -200px; background: radial-gradient(circle, #dcdbff 0%, transparent 70%); }
+.lp-hero .container { position: relative; z-index: 1; }
+.lp-eyebrow { color: var(--coral); font-weight: 600; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; }
+.lp-hero h1 { font-size: clamp(2.3rem, 5vw, 3.8rem); line-height: 1.07; font-weight: 500; letter-spacing: -.025em; margin: .9rem 0 1.1rem; }
+.lp-hero h1 strong { font-weight: 700; }
+.lp-hero .lead { color: var(--muted); max-width: 480px; font-size: 1.05rem; }
+.lp-trust { display: flex; flex-wrap: wrap; gap: .6rem 1.5rem; color: var(--muted); font-size: .88rem; }
+.lp-trust i { color: var(--teal); margin-right: .4rem; }
+.lp-hero-art { position: relative; max-width: 500px; margin: 0 auto; }
+.lp-hero-art .lp-hero-svg { width: 100%; height: auto; display: block; }
+.lp-float { position: absolute; background: #fff; border-radius: 16px; box-shadow: 0 16px 40px rgba(39,37,110,.20); padding: .85rem 1rem; font-size: .82rem; }
+.lp-float.a { top: 4%; right: 0; display: flex; align-items: center; gap: .6rem; font-weight: 500; }
+.lp-float.b { bottom: 6%; left: -2%; width: 230px; }
+.lp-float .dot { width: 34px; height: 34px; border-radius: 10px; background: var(--brand-light); color: var(--brand); display: flex; align-items: center; justify-content: center; }
+.lp-float .row-i { display: flex; align-items: center; gap: .55rem; padding: .28rem 0; }
+.lp-float .row-i i { color: var(--teal); }
+.lp-badge-spin { position: absolute; top: 3%; left: 2%; width: 100px !important; height: 100px !important; animation: lpspin 18s linear infinite; }
+@keyframes lpspin { to { transform: rotate(360deg); } }
+/* ---------- Marquee ---------- */
+.lp-marquee { background: var(--brand); color: #fff; overflow: hidden; white-space: nowrap; padding: 1rem 0; }
+.lp-marquee .track { display: inline-flex; animation: lpmarquee 32s linear infinite; }
+.lp-marquee .item { display: inline-flex; align-items: center; gap: 2.2rem; padding-right: 2.2rem; font-weight: 600; }
+.lp-marquee .item::after { content: '\2726'; color: var(--coral); }
+@keyframes lpmarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* ---------- Common ---------- */
+.lp-sec { padding: 5.5rem 0; }
+.lp-white { background: #fff; }
+.lp-soft { background: var(--bg); }
+.lp-h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; letter-spacing: -.02em; line-height: 1.15; margin: .6rem 0 1rem; }
+.lp-h2 strong { font-weight: 700; }
+.lp-lead { color: var(--muted); }
+/* ---------- About ---------- */
+.lp-about-art { position: relative; min-height: 400px; max-width: 480px; }
+.lp-about-art .ca { position: absolute; left: 0; top: 0; width: 80%; height: 310px; border-radius: 26px; background: linear-gradient(145deg, #4b47d1, #27256e); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.32); font-size: 7rem; }
+.lp-about-art .cb { position: absolute; right: 0; bottom: 0; width: 64%; height: 240px; border-radius: 26px; background: linear-gradient(145deg, #ff8a7e, #ff6b5e); border: 7px solid #fff; box-shadow: 0 24px 54px rgba(39,37,110,.25); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; color: #fff; text-align: center; padding: 1rem; }
+.lp-about-art .cb i { font-size: 3.2rem; }
+.lp-progress { margin: 1.2rem 0; }
+.lp-progress .top { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 500; }
+.lp-progress .bar { height: 8px; border-radius: 8px; background: #e6e5ff; margin-top: .5rem; overflow: hidden; }
+.lp-progress .bar span { display: block; height: 100%; border-radius: 8px; background: linear-gradient(90deg, #4b47d1, #ff6b5e); }
+.lp-statrow { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin-top: 3.5rem; }
+.lp-stat { border-left: 3px solid var(--coral); padding-left: 1rem; }
+.lp-stat .n { font-size: 2.4rem; font-weight: 700; color: var(--brand); line-height: 1; }
+.lp-stat .l { color: var(--muted); font-size: .9rem; margin-top: .3rem; }
+/* ---------- Dark: vaccines covered + CTA ---------- */
+.lp-dark { background: var(--navy-deep); color: #dcdcf7; position: relative; overflow: hidden; padding: 5.5rem 0 8rem; }
+.lp-dark::before { content: ''; position: absolute; width: 480px; height: 480px; border-radius: 50%; left: -180px; bottom: -160px; background: radial-gradient(circle, rgba(75,71,209,.45), transparent 70%); }
+.lp-dark .container { position: relative; z-index: 1; }
+.lp-dark .lp-h2 { color: #fff; }
+.lp-cover-card { border-radius: 22px; overflow: hidden; background: #fff; color: var(--text); height: 100%; display: flex; flex-direction: column; transition: transform .18s ease; }
+.lp-cover-card:hover { transform: translateY(-6px); }
+.lp-cover-card .hd { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 4.2rem; color: rgba(255,255,255,.9); background: linear-gradient(135deg, #4b47d1, #27256e); }
+.lp-cover-card .bd { padding: 1.4rem 1.5rem 1.6rem; flex: 1; display: flex; flex-direction: column; }
+.lp-cover-card .age { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; opacity: .7; }
+.lp-cover-card h5 { margin: .4rem 0 .6rem; font-size: 1.2rem; color: var(--text); }
+.lp-cover-card p { font-size: .9rem; opacity: .85; flex: 1; margin-bottom: .8rem; }
+.lp-cover-card .more { font-weight: 600; font-size: .88rem; text-decoration: none; color: inherit; }
+.lp-cover-card.coral { background: var(--coral); color: #fff; }
+.lp-cover-card.coral h5 { color: #fff; }
+.lp-cover-card.coral .hd { background: linear-gradient(135deg, #ff8f84, #e9554a); }
+.lp-cover-card.teal .hd { background: linear-gradient(135deg, #5ac8ff, #2a7de1); }
+.lp-cta { text-align: center; padding-top: 5.5rem; }
+.lp-cta h2 { font-size: clamp(1.9rem, 4vw, 3rem); color: #fff; font-weight: 500; letter-spacing: -.02em; }
+.lp-cta h2 strong { font-weight: 700; }
+.lp-wave { position: absolute; left: 0; right: 0; bottom: -1px; line-height: 0; z-index: 1; }
+.lp-wave svg { display: block; width: 100%; height: 90px; }
+/* ---------- How it works ---------- */
+.lp-step { background: #fff; border-radius: 20px; padding: 1.7rem; box-shadow: var(--shadow); height: 100%; }
+.lp-step .ic { width: 54px; height: 54px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1rem; background: var(--brand-light); color: var(--brand); }
+.lp-step:nth-child(2) .ic { background: #ffe9e6; color: var(--coral); }
+.lp-step .no { font-size: .72rem; letter-spacing: .16em; font-weight: 700; color: var(--coral); }
+.lp-step h5 { margin: .3rem 0 .5rem; }
+.lp-step p { color: var(--muted); font-size: .9rem; margin: 0; }
+/* ---------- Why choose ---------- */
+.lp-why-item { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid #ebeaff; }
+.lp-why-item:last-child { border-bottom: 0; }
+.lp-why-item .ic { width: 46px; height: 46px; border-radius: 14px; background: var(--brand-light); color: var(--brand); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; }
+.lp-why-item h6 { margin: 0 0 .2rem; }
+.lp-why-item p { margin: 0; color: var(--muted); font-size: .9rem; }
+.lp-why-art { position: relative; min-height: 400px; max-width: 460px; margin-left: auto; }
+.lp-why-art > div { position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.8); }
+.lp-why-art .c1 { right: 0; top: 0; width: 290px; height: 290px; font-size: 5rem; background: linear-gradient(145deg, #4b47d1, #1f1e5a); }
+.lp-why-art .c2 { left: 6%; top: 42%; width: 190px; height: 190px; font-size: 3.4rem; background: linear-gradient(145deg, #5ac8ff, #2a7de1); border: 8px solid var(--bg); }
+.lp-why-art .c3 { right: 16%; bottom: 0; width: 120px; height: 120px; font-size: 2.2rem; background: linear-gradient(145deg, #ff8f84, #ff6b5e); border: 6px solid var(--bg); }
+.lp-why-art .dots { left: 0; top: 4%; width: 120px; height: 120px; border-radius: 0; background-image: radial-gradient(#b4b2ff 2px, transparent 2px); background-size: 16px 16px; }
+/* ---------- Hospitals ---------- */
+.lp-chip { border: 1px solid #dcdcf7; background: #fff; color: var(--text); border-radius: 999px; padding: .45rem 1rem; font-size: .85rem; cursor: pointer; transition: all .15s; }
+.lp-chip .n { opacity: .55; margin-left: .3rem; }
+.lp-chip:hover,
+.lp-chip.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+.lp-hosp { background: #fff; border-radius: 18px; padding: 1.3rem; box-shadow: var(--shadow); height: 100%; display: flex; flex-direction: column; border: 1px solid #f0efff; }
+.lp-hosp h6 { margin: 0 0 .5rem; font-size: 1.02rem; }
+.lp-hosp .meta { font-size: .84rem; color: var(--muted); margin-bottom: .25rem; }
+.lp-hosp .meta i { color: var(--coral); margin-right: .45rem; }
+.lp-hosp .acts { margin-top: auto; padding-top: 1rem; display: flex; gap: .5rem; flex-wrap: wrap; }
+/* ---------- Hospitals near me ---------- */
+.near-panel { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; padding: 1.25rem 1.5rem; border-radius: 22px; color: #fff;
+  background: radial-gradient(circle at 90% 0%, rgba(255,255,255,.12), transparent 45%), linear-gradient(135deg, #27256e, #3f3bb5); box-shadow: 0 14px 34px rgba(39,37,110,.25); }
+.near-panel.is-error { background: linear-gradient(135deg, #7a2a2a, #c9534a); }
+.near-ico { width: 52px; height: 52px; border-radius: 16px; background: rgba(255,255,255,.14); display: grid; place-items: center; font-size: 1.4rem; flex-shrink: 0; position: relative; }
+.near-ico::after { content: ''; position: absolute; inset: 0; border-radius: 16px; border: 2px solid rgba(255,255,255,.35); animation: nearPulse 2s ease-out infinite; }
+.near-panel.is-done .near-ico::after { animation: none; opacity: 0; }
+@keyframes nearPulse { from { transform: scale(1); opacity: .9; } to { transform: scale(1.45); opacity: 0; } }
+.near-txt { flex: 1 1 260px; min-width: 0; }
+.near-title { font-weight: 600; font-size: 1.05rem; }
+.near-sub { font-size: .86rem; opacity: .82; }
+.near-ctrl { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+.near-ctrl .btn-light { color: var(--brand); }
+.near-radius { display: inline-flex; background: rgba(255,255,255,.12); border-radius: 999px; padding: 3px; }
+.near-radius button { border: 0; background: transparent; color: #fff; font-size: .8rem; padding: .35rem .8rem; border-radius: 999px; cursor: pointer; }
+.near-radius button.active { background: #fff; color: var(--brand); font-weight: 600; }
+.near-tags { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: .55rem; }
+.near-tags span { font-size: .74rem; font-weight: 600; padding: .2rem .65rem; border-radius: 999px; }
+.near-dist { background: var(--brand-light); color: var(--brand); }
+.near-best { background: #e6f8ee; color: #16794a; }
+@media (max-width: 575.98px) { .near-ctrl, .near-ctrl .btn { width: 100%; } .near-radius { width: 100%; justify-content: space-between; } }
+/* ---------- Values ---------- */
+.lp-value { border-radius: 22px; position: relative; color: #fff; min-height: 300px; padding: 1.8rem; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+.lp-value .big { position: absolute; top: 1.2rem; right: 1.4rem; font-size: 5rem; opacity: .22; }
+.lp-value h5 { color: #fff; margin-bottom: .4rem; }
+.lp-value p { margin: 0; opacity: .92; font-size: .92rem; }
+.lp-value.v1 { background: linear-gradient(145deg, #4b47d1, #1f1e5a); }
+.lp-value.v2 { background: linear-gradient(145deg, #5ac8ff, #2a7de1); }
+.lp-value.v3 { background: linear-gradient(145deg, #ff8f84, #ff6b5e); }
+/* ---------- FAQ ---------- */
+.lp-help { background: #fff; border-radius: 18px; padding: 1.2rem 1.4rem; box-shadow: var(--shadow); display: flex; gap: 1rem; align-items: center; margin-top: 1.8rem; }
+.lp-help .ic { width: 46px; height: 46px; border-radius: 14px; background: var(--brand-light); color: var(--brand); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+/* ---------- Footer ---------- */
+.lp-footer { background: var(--navy-deep); color: #b9b9e3; }
+.lp-footer h6 { color: #fff; font-size: .95rem; margin-bottom: 1rem; }
+.lp-footer a { color: #b9b9e3; text-decoration: none; }
+.lp-footer a:hover { color: var(--coral); }
+.lp-footer .bottom { border-top: 1px solid rgba(255,255,255,.1); }
+@media (max-width: 991.98px) {
+  .lp-sec { padding: 4rem 0; }
+  .lp-dark { padding: 4rem 0 7rem; }
+  .lp-about-art,
+  .lp-why-art { margin: 0 auto 1rem; }
+}
+@media (max-width: 575.98px) {
+  .lp-hero { padding: 3rem 0 4rem; }
+  .lp-float.b { left: 0; width: 200px; }
+  .lp-badge-spin { width: 76px; height: 76px; }
+  .lp-about-art { min-height: 340px; }
+  .lp-why-art .c1 { width: 230px; height: 230px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lp-marquee .track,
+  .lp-badge-spin { animation: none; }
+}
+/* =====================================================
+   Day 22: GREEN KHATAM. Bootstrap ke "success" ko theme ke indigo mein badla,
+   is liye btn-success, Approved/Vaccinated ke badge, progress bars, alerts, sab ek rang ke.
+   ===================================================== */
+:root {
+  --teal: #2a9df4;
+  --bs-success: #4b47d1;
+  --bs-success-rgb: 75, 71, 209;
+  --bs-success-bg-subtle: #e8e7ff;
+  --bs-success-border-subtle: #c9c7ff;
+  --bs-success-text-emphasis: #27256e;
+  --bs-danger: #e5484d;
+  --bs-danger-rgb: 229, 72, 77;
+  --bs-danger-bg-subtle: #ffe6e7;
+  --bs-danger-border-subtle: #ffc9cb;
+  --bs-danger-text-emphasis: #8f1d22;
+  --bs-info: #2a9df4;
+  --bs-info-rgb: 42, 157, 244;
+  --bs-info-bg-subtle: #e3f3ff;
+  --bs-info-border-subtle: #b9e0fc;
+  --bs-info-text-emphasis: #0c5a96;
+}
+.btn { font-weight: 500; }
+.btn-success {
+  --bs-btn-color: #fff; --bs-btn-bg: #4b47d1; --bs-btn-border-color: #4b47d1;
+  --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #3b37b8; --bs-btn-hover-border-color: #3b37b8;
+  --bs-btn-active-color: #fff; --bs-btn-active-bg: #3b37b8; --bs-btn-active-border-color: #3b37b8;
+  --bs-btn-disabled-bg: #4b47d1; --bs-btn-disabled-border-color: #4b47d1;
+}
+.btn-outline-success {
+  --bs-btn-color: #4b47d1; --bs-btn-border-color: #4b47d1;
+  --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #4b47d1; --bs-btn-hover-border-color: #4b47d1;
+  --bs-btn-active-color: #fff; --bs-btn-active-bg: #4b47d1; --bs-btn-active-border-color: #4b47d1;
+}
+.btn-danger {
+  --bs-btn-bg: #e5484d; --bs-btn-border-color: #e5484d;
+  --bs-btn-hover-bg: #cf3a3f; --bs-btn-hover-border-color: #cf3a3f;
+  --bs-btn-active-bg: #cf3a3f; --bs-btn-active-border-color: #cf3a3f;
+}
+.btn-outline-danger {
+  --bs-btn-color: #e5484d; --bs-btn-border-color: #e5484d;
+  --bs-btn-hover-bg: #e5484d; --bs-btn-hover-border-color: #e5484d;
+  --bs-btn-active-bg: #e5484d; --bs-btn-active-border-color: #e5484d;
+}
+.progress-bar.bg-success { background: linear-gradient(90deg, #4b47d1, #7a76ff) !important; }
+.lp-trust i,
+.lp-float .row-i i { color: var(--indigo); }
+.toast-success { --tc: #4b47d1; }
+.toast-info { --tc: #2a9df4; }
+.btn[disabled],
+.btn.disabled { cursor: not-allowed; }
+/* Day 23: login wale ke liye hero ka personal card */
+.lp-float.lp-me { width: 290px; }
+.lp-float.lp-me .row-i { justify-content: space-between; }
+.lp-float.lp-me .row-i span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: .5rem; }
+.lp-float.lp-me .progress { height: 7px; }
+@media (max-width: 575.98px) {
+  .lp-float.lp-me { width: 240px; }
+}
+/* Day 23: ghanti (notifications) */
+.toast-vax { cursor: pointer; }
+.notif-btn { padding: .35rem .6rem; }
+.notif-dot {
+  position: absolute; top: -4px; right: -4px; min-width: 19px; height: 19px; padding: 0 5px; border-radius: 999px;
+  background: var(--coral); color: #fff; font-size: .68rem; font-weight: 700; line-height: 19px; text-align: center;
+  border: 2px solid #fff;
+}
+.notif-menu { width: 340px; max-width: 92vw; border-radius: 14px; overflow: hidden; }
+.notif-item { display: block; padding: .7rem 1rem; border-bottom: 1px solid #f0efff; color: var(--text); text-decoration: none; font-size: .88rem; white-space: normal; }
+.notif-item:last-child { border-bottom: 0; }
+.notif-item:hover { background: #f6f5ff; color: var(--text); }
+.notif-item.unread,
+.notif-unread { background: #f3f2ff; }
+
+/* Phone par bara gutter (g-5) page ke kinare se bahar nikal kar side-scroll banata tha */
+@media (max-width: 575.98px) {
+  .row.g-5, .row.gx-5 { --bs-gutter-x: 1.5rem; }
+}
+
+/* Report ke 3 stat box phone par: label kate nahi, icon chhota aur upar */
+@media (max-width: 575.98px) {
+  .report-stats .stat-card { flex-direction: column; align-items: flex-start; gap: .4rem; padding: .75rem; }
+  .report-stats .icon-box { width: 34px; height: 34px; font-size: 1rem; }
+  .report-stats .stat-label { font-size: .75rem; white-space: normal; }
+  /* Home page: phone par pehle sirf 6 hospitals, baqi "Show all" se */
+  .lp-hosp-list-short .lp-hosp-item.is-extra { display: none !important; }
+}
